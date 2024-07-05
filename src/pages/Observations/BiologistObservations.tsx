@@ -117,7 +117,7 @@ export const BiologistObservations = () => {
 
   const handleSeeAllBodyOfWaterObservations = async (bodyOfWaterId: number) => {
     try {
-      const res = await apiClient.get(`bodies-of-water/${bodyOfWaterId}/observations`)
+      const res = await apiClient.get(`/bodies-of-water/${bodyOfWaterId}/observations`)
       
       setBodyOfWaterObservations(res.data)
     } catch(err) {
