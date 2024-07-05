@@ -112,6 +112,7 @@ export const CitizenScientistObservations = () => {
   const handleObservationCreated = async () => {
     toggle()
     map && map.closePopup()
+    setCreateNewObservationDraft(undefined)
 
     await fetchMyObservations()
   }

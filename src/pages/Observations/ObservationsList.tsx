@@ -104,8 +104,8 @@ export const ObservationsList = ({observations, onEditObservation, onDeleteObser
                     <button
                       className="font-medium text-blue-600"
                       onClick={() => {
-                        toggle()
                         setEditObservationDraft(obs)
+                        toggle()
                       }}
                     >
                       Edit
@@ -130,6 +130,7 @@ export const ObservationsList = ({observations, onEditObservation, onDeleteObser
     </table>
     {editObservationDraft &&
       <EditObservation
+        key={editObservationDraft.id}
         isOpen={isToggled}
         closeDrawer={toggle}
         observationId={editObservationDraft.id}
