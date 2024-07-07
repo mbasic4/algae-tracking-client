@@ -4,7 +4,7 @@ export const Account = () => {
   const { currentUser } = useCurrentUser();
 
   return (
-    <div className="h-full max-w-screen-xl mx-auto p-4">
+    <div className="flex-1 max-w-screen-xl mx-auto p-4">
       <div className="bg-white overflow-hidden shadow rounded-lg border mt-12">
         <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
             <dl className="sm:divide-y sm:divide-gray-200">

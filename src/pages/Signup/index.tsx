@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 export const SignupPage = () => {
   return (
     <div
-      className="h-full justify-center bg-no-repeat bg-cover bg-center"
+      className="flex flex-1 justify-center bg-no-repeat bg-cover bg-center"
       style={{ backgroundImage: "url('http://localhost:8080/algae_background.webp')"}}>
         <div className="h-full p-20">
           <div className="md:grid grid-cols-2 gap-32 h-full">

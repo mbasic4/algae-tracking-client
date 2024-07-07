@@ -58,10 +58,10 @@ export const BiologistSignup = () => {
 
   return (
     <div
-      className="h-full justify-center bg-no-repeat bg-cover bg-center"
+      className="flex flex-1 justify-center bg-no-repeat bg-cover bg-center"
       style={{ backgroundImage: "url('http://localhost:8080/algae_background.webp')"}}>
-        <div className="flex justify-center items-center h-full">
-          <div className="bg-white border-2 rounded-lg p-8 shadow-lg shadow-neutral-400" style={{ width: 450 }}>
+        <div className="flex flex-1 justify-center items-center">
+          <div className="bg-white border-2 rounded-lg p-8 my-10 shadow-lg shadow-neutral-400" style={{ width: 450 }}>
             <div className="mt-10 mb-8">
               <h2 className="text-2xl text-gray-900">Sign Up</h2>
             </div>

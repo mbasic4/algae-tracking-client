@@ -13,6 +13,7 @@ import { Observations } from "./pages/Observations";
 import { Spinner } from "./components/Spinner";
 import { useEffect } from "react";
 import { apiClient } from "./apiClient";
+import { NotFound } from "./pages/NotFound";
 
 function App() {
   const { token, currentUser, logout } = useCurrentUser();
@@ -40,8 +41,8 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="h-full">
-      <div style={{ height: 64 }} />
+      <div style={{ height: "68px" }} />
+      <div style={{ minHeight: "calc(100vh - 68px)", display: "flex" }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
@@ -76,6 +77,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path='/*' element={<NotFound />} />
         </Routes>
       </div>
     </>

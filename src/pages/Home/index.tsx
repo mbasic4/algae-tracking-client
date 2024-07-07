@@ -1,7 +1,7 @@
 export const HomePage = () => {
   return (
     <div
-      className="h-full justify-center bg-no-repeat bg-cover bg-center"
+      className="flex flex-1 justify-center bg-no-repeat bg-cover bg-center"
       style={{ backgroundImage: "url('http://localhost:8080/algae_background.webp')"}}>
         <div className="h-full max-w-screen-xl mx-auto p-4 content-center">
           <p className="text-xl text-white text-bold mb-5" style={{ textShadow: "3px 2px 2px #111827" }}>

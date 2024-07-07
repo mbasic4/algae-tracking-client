@@ -129,8 +129,12 @@ export const CitizenScientistObservations = () => {
   }, [polygons])
 
   const requestedObservations = useMemo(() => {
-    return observations.filter(obs => obs.observationRequestId).map(obs => obs.id)
+    return observations.filter(obs => obs.observationRequestId)
   }, [observations])
+
+  const requestedObservationIds = useMemo(() => {
+    return requestedObservations.map(obs => obs.id)
+  }, [requestedObservations])
 
   return (
     <div className="h-full max-w-screen-xl mx-auto p-4">
@@ -162,25 +166,29 @@ export const CitizenScientistObservations = () => {
                 }
               }}
             />
-            {polygon.observationRequests.map(obsRequest =>
+            {polygon.observationRequests.map(obsRequest => {
+              const answeredRequestsIds = requestedObservations.filter(obs =>
+                obs.observationRequestId === obsRequest.id
+              ).map(obs => obs.id)
+              return (
               <Marker key={obsRequest.id} position={[obsRequest.location.location.coordinates[1], obsRequest.location.location.coordinates[0]]}>
                 <Tooltip direction="right" offset={[0, 0]} opacity={1} permanent>
                   <>
                     <p className="text-sm font-semibold text-emerald-600">Observation requested</p>
-                    {requestedObservations.includes(obsRequest.id) &&
-                      <p className="text-xs font-semibold">ID_{obsRequest.id}</p>
-                    }
+                    {answeredRequestsIds.length > 0 && answeredRequestsIds.map(obsId =>
+                      <p key={obsId} className="text-xs font-semibold">ID_{obsId}</p>
+                    )}
                   </>
                 </Tooltip>
                 <Popup>
                   <div>
-                    {requestedObservations.includes(obsRequest.id) &&
+                    {answeredRequestsIds.length > 0 &&
                       <p className="text-sm text-gray-900">
                         You already responded to this request. Want to add another observation?
                       </p>
                     }
                     <Button
-                      label={requestedObservations.includes(obsRequest.id)
+                      label={answeredRequestsIds.length > 0
                         ? "Add Another Observation"
                         : "Respond To Observation Request"
                       }
@@ -189,6 +197,7 @@ export const CitizenScientistObservations = () => {
                   </div>
                 </Popup>
               </Marker>
+              )}
             )}
           </div>
         )}
@@ -203,7 +212,7 @@ export const CitizenScientistObservations = () => {
         </Marker>
         }
         {observations.length > 0 && observations.map(observation => {
-        return !requestedObservations.includes(observation.id) &&
+        return !requestedObservationIds.includes(observation.id) &&
           <Marker
             key={observation.id}
             position={swapLocationCoordinates(observation.location)}

@@ -42,13 +42,11 @@ export const CurrentUserProvider = ({ children }: { children: ReactNode }) => {
     }
   }
 
-  // call this function when you want to authenticate the user
   const login = (token: string) => {
     setToken(token);
     navigate("/account");
   };
 
-  // call this function to sign out logged in user
   const logout = () => {
     setToken(null);
     navigate("/", { replace: true });
