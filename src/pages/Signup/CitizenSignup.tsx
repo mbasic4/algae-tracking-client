@@ -1,14 +1,13 @@
+import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as yup from "yup";
 
 import { FormInput } from "../../components/FormComponents/FormInput";
-import { useNavigate } from "react-router-dom";
-import { setToken } from "../../auth/tokenManager";
 import { apiClient } from "../../apiClient";
-import { useState } from "react";
 //@ts-ignore
 import { useYupValidationResolver } from "../../utils/yupResolver";
 import { handleError } from "../../utils/handleError";
+import { useCurrentUser } from "../../auth/useCurrentUser";
 
 
 type Inputs = {
@@ -38,10 +37,10 @@ const schema = yup.object().shape({
 });
 
 export const CitizenSignup = () => {
+  const { login } = useCurrentUser();
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>({
     resolver: useYupValidationResolver(schema)
   });
-  const navigate = useNavigate()
   const [error, setError] = useState<string>();
 
   const onSubmit: SubmitHandler<Inputs> = async data => {
@@ -50,8 +49,7 @@ export const CitizenSignup = () => {
     try {
       const res = await apiClient.post("/signup/citizen-scientist", formData)
 
-      setToken(res.data.token)
-      navigate("/account")
+      login(res.data.token)
     } catch (err) {
       const errorMessage = handleError(err)
       setError(errorMessage)
